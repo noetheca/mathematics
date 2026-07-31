@@ -1,15 +1,21 @@
 ---
 import ConceptRelations from "@noetheca/knowledge-engine/components/ConceptRelations.astro";
 import KnowledgeLayout from "@noetheca/knowledge-engine/components/KnowledgeLayout.astro";
-import { type Concept } from "@noetheca/knowledge-engine";
+import {
+  getUiStrings,
+  type Concept,
+  type KnowledgeLanguageOption,
+} from "@noetheca/knowledge-engine";
 import { render, type CollectionEntry } from "astro:content";
 import { loadConceptEntries } from "../lib/concept-entries";
+import { siteLanguages } from "../lib/languages";
 import { conceptRoute, withBase } from "../lib/routes";
 
 interface Props {
   entry: CollectionEntry<"concepts">;
   concept: Concept;
   relationTitles: Record<string, string>;
+  languages: KnowledgeLanguageOption[];
 }
 
 export async function getStaticPaths() {
@@ -31,18 +37,25 @@ export async function getStaticPaths() {
         ])
         .filter((pair): pair is [string, string] => pair[1] !== undefined),
     );
+    const languages = siteLanguages.map((language) => ({
+      ...language,
+      href: translations.has(`${conceptId}:${language.locale}`)
+        ? withBase(conceptRoute(language.locale, conceptId))
+        : undefined,
+    }));
     return {
       params: {
         slug: conceptRoute(entry.data.locale, conceptId),
       },
-      props: { entry, concept, relationTitles },
+      props: { entry, concept, relationTitles, languages },
     };
   });
 }
 
-const { entry, concept, relationTitles } = Astro.props;
+const { entry, concept, relationTitles, languages } = Astro.props;
 const { Content } = await render(entry);
 const locale = entry.data.locale;
+const ui = getUiStrings(locale).article;
 
 function relation(id: string) {
   const title = relationTitles[id];
@@ -63,18 +76,13 @@ const editUrl = sourcePath
   title={entry.data.title}
   summary={entry.data.summary}
   locale={locale}
+  domain="mathematics"
+  languages={languages}
 >
   <article>
-    <p class="eyebrow">{concept.metadata.id}</p>
+    <p class="eyebrow">{concept.metadata.id.replaceAll("/", " / ")}</p>
     <h1>{entry.data.title}</h1>
     <p class="lede">{entry.data.summary}</p>
-    <p class="content-state">
-      <span>状態: {entry.data.status}</span>
-      <a href={editUrl}>GitHubで編集</a>
-      <a href="https://github.com/noetheca/mathematics/issues/new/choose">
-        Issueを作成
-      </a>
-    </p>
 
     <div class="prose">
       <Content />
@@ -83,10 +91,16 @@ const editUrl = sourcePath
     <ConceptRelations
       prerequisites={concept.metadata.prerequisites.map(relation)}
       related={concept.metadata.related.map(relation)}
+      ariaLabel={ui.relationsLabel}
+      labels={{
+        prerequisites: ui.prerequisites,
+        related: ui.related,
+        empty: ui.noRelations,
+      }}
     />
 
     <section aria-labelledby="sources">
-      <h2 id="sources">出典・確認元</h2>
+      <h2 id="sources">{ui.sources}</h2>
       {
         entry.data.sources.length > 0 ? (
           <ul>
@@ -95,16 +109,26 @@ const editUrl = sourcePath
                 {typeof source === "string" ? (
                   <a href={source}>{source}</a>
                 ) : (
-                  <a href={source.url}>{source.title}</a>
+                  <>
+                    <a href={source.url}>{source.title}</a>
+                    {source.note && <span> — {source.note}</span>}
+                  </>
                 )}
               </li>
             ))}
           </ul>
         ) : (
-          <p class="muted">公開前に確認元を追加する必要があります。</p>
+          <p class="muted">{ui.sourcesPending}</p>
         )
       }
     </section>
+
+    <p class="content-state">
+      <a href={editUrl}>GitHub</a>
+      <a href="https://github.com/noetheca/mathematics/issues/new/choose">
+        {ui.reportIssue}
+      </a>
+    </p>
   </article>
 </KnowledgeLayout>
 
@@ -115,15 +139,8 @@ const editUrl = sourcePath
     display: flex;
     flex-wrap: wrap;
     gap: 0.6rem 1rem;
-    margin-block: 2rem;
+    margin-block: 3rem 0;
     padding-block: 0.8rem;
-  }
-
-  .content-state span {
-    background: var(--accent-soft);
-    border-radius: 100vw;
-    color: var(--accent);
-    padding: 0.15rem 0.65rem;
   }
 
   .prose {
