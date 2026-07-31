@@ -17,6 +17,7 @@ concurrency:
 
 jobs:
   build:
+    if: github.event.repository.visibility == 'public'
     runs-on: ubuntu-latest
     steps:
       - name: Check out mathematics
@@ -50,6 +51,7 @@ jobs:
           path: mathematics/dist
 
   deploy:
+    if: github.event.repository.visibility == 'public'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

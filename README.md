@@ -33,6 +33,10 @@ pnpm dev
 
 The development site is served under `/mathematics/`, matching GitHub Pages.
 
+The cross-repository GitHub Actions job and Pages deployment stay skipped while
+this repository is private. They activate after the code and content licenses
+are approved and the repositories are made public.
+
 ## Content
 
 See the shared
