@@ -1,63 +1,55 @@
 ---
-import { resolve } from "node:path";
 import ConceptRelations from "@noetheca/knowledge-engine/components/ConceptRelations.astro";
 import KnowledgeLayout from "@noetheca/knowledge-engine/components/KnowledgeLayout.astro";
-import { loadKnowledgeBase, type Concept } from "@noetheca/knowledge-engine";
-import { getCollection, render, type CollectionEntry } from "astro:content";
-import { conceptIdFromEntryId, conceptRoute, withBase } from "../lib/routes";
+import { type Concept } from "@noetheca/knowledge-engine";
+import { render, type CollectionEntry } from "astro:content";
+import { loadConceptEntries } from "../lib/concept-entries";
+import { conceptRoute, withBase } from "../lib/routes";
 
 interface Props {
   entry: CollectionEntry<"concepts">;
   concept: Concept;
+  relationTitles: Record<string, string>;
 }
 
 export async function getStaticPaths() {
-  const entries = await getCollection("concepts");
-  const knowledgeBase = await loadKnowledgeBase(resolve("concepts"));
-  const errors = knowledgeBase.issues.filter(({ severity }) => severity === "error");
-  if (errors.length > 0) {
-    throw new Error(
-      `Knowledge validation failed before route generation:\n${errors
-        .map(({ code, message }) => `[${code}] ${message}`)
-        .join("\n")}`,
-    );
-  }
-  const concepts = new Map(
-    knowledgeBase.concepts.map((concept) => [concept.metadata.id, concept]),
+  const records = await loadConceptEntries();
+  const translations = new Map(
+    records.map(({ entry, concept }) => [
+      `${concept.metadata.id}:${entry.data.locale}`,
+      entry,
+    ]),
   );
 
-  return entries.map((entry) => {
-    const conceptId = conceptIdFromEntryId(entry.id, entry.data.locale);
-    const concept = concepts.get(conceptId);
-    if (!concept) {
-      throw new Error(`No concept metadata found for content entry "${entry.id}".`);
-    }
+  return records.map(({ entry, concept }) => {
+    const conceptId = concept.metadata.id;
+    const relationTitles = Object.fromEntries(
+      [...concept.metadata.prerequisites, ...concept.metadata.related]
+        .map((id) => [
+          id,
+          translations.get(`${id}:${entry.data.locale}`)?.data.title,
+        ])
+        .filter((pair): pair is [string, string] => pair[1] !== undefined),
+    );
     return {
       params: {
         slug: conceptRoute(entry.data.locale, conceptId),
       },
-      props: { entry, concept },
+      props: { entry, concept, relationTitles },
     };
   });
 }
 
-const { entry, concept } = Astro.props;
+const { entry, concept, relationTitles } = Astro.props;
 const { Content } = await render(entry);
 const locale = entry.data.locale;
 
-const allTranslations = new Map(
-  (await getCollection("concepts")).map((item) => [
-    `${conceptIdFromEntryId(item.id, item.data.locale)}:${item.data.locale}`,
-    item,
-  ]),
-);
-
 function relation(id: string) {
-  const localized = allTranslations.get(`${id}:${locale}`);
+  const title = relationTitles[id];
   return {
     id,
-    title: localized?.data.title,
-    href: localized ? withBase(conceptRoute(locale, id)) : undefined,
+    title,
+    href: title ? withBase(conceptRoute(locale, id)) : undefined,
   };
 }
 
