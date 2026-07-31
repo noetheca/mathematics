@@ -3,11 +3,15 @@ import { createKnowledgeGraphModel } from "@noetheca/knowledge-engine";
 import KnowledgeGraph from "@noetheca/knowledge-engine/components/KnowledgeGraph.astro";
 import KnowledgeLayout from "@noetheca/knowledge-engine/components/KnowledgeLayout.astro";
 import { loadConceptEntries } from "../lib/concept-entries";
+import { siteLanguages } from "../lib/languages";
 import { conceptRoute, withBase } from "../lib/routes";
 
-const records = (await loadConceptEntries()).sort((left, right) =>
-  left.entry.data.title.localeCompare(right.entry.data.title, "ja"),
-);
+const locale = "ja";
+const records = (await loadConceptEntries())
+  .filter(({ entry }) => entry.data.locale === locale)
+  .sort((left, right) =>
+    left.entry.data.title.localeCompare(right.entry.data.title, locale),
+  );
 const graph = createKnowledgeGraphModel(
   records.map(({ entry, concept }) => ({
     id: concept.metadata.id,
@@ -24,11 +28,14 @@ const graph = createKnowledgeGraphModel(
 <KnowledgeLayout
   title="数学"
   summary="noethecaで試作中の数学Knowledge Baseです。"
-  locale="ja"
+  locale={locale}
+  domain="mathematics"
+  languages={siteLanguages}
   immersive
 >
   <KnowledgeGraph
     graph={graph}
+    locale={locale}
     title="数学 Knowledge Map"
   />
 </KnowledgeLayout>

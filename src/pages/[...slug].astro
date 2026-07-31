@@ -4,12 +4,18 @@ import KnowledgeLayout from "@noetheca/knowledge-engine/components/KnowledgeLayo
 import { type Concept } from "@noetheca/knowledge-engine";
 import { render, type CollectionEntry } from "astro:content";
 import { loadConceptEntries } from "../lib/concept-entries";
+import {
+  getArticleStrings,
+  siteLanguages,
+  type SiteLanguageOption,
+} from "../lib/languages";
 import { conceptRoute, withBase } from "../lib/routes";
 
 interface Props {
   entry: CollectionEntry<"concepts">;
   concept: Concept;
   relationTitles: Record<string, string>;
+  languages: SiteLanguageOption[];
 }
 
 export async function getStaticPaths() {
@@ -31,18 +37,25 @@ export async function getStaticPaths() {
         ])
         .filter((pair): pair is [string, string] => pair[1] !== undefined),
     );
+    const languages = siteLanguages.map((language) => ({
+      ...language,
+      href: translations.has(`${conceptId}:${language.locale}`)
+        ? withBase(conceptRoute(language.locale, conceptId))
+        : undefined,
+    }));
     return {
       params: {
         slug: conceptRoute(entry.data.locale, conceptId),
       },
-      props: { entry, concept, relationTitles },
+      props: { entry, concept, relationTitles, languages },
     };
   });
 }
 
-const { entry, concept, relationTitles } = Astro.props;
+const { entry, concept, relationTitles, languages } = Astro.props;
 const { Content } = await render(entry);
 const locale = entry.data.locale;
+const ui = getArticleStrings(locale);
 
 function relation(id: string) {
   const title = relationTitles[id];
@@ -63,6 +76,8 @@ const editUrl = sourcePath
   title={entry.data.title}
   summary={entry.data.summary}
   locale={locale}
+  domain="mathematics"
+  languages={languages}
 >
   <article>
     <p class="eyebrow">{concept.metadata.id.replaceAll("/", " / ")}</p>
@@ -76,10 +91,16 @@ const editUrl = sourcePath
     <ConceptRelations
       prerequisites={concept.metadata.prerequisites.map(relation)}
       related={concept.metadata.related.map(relation)}
+      ariaLabel={ui.relationsLabel}
+      labels={{
+        prerequisites: ui.prerequisites,
+        related: ui.related,
+        empty: ui.noRelations,
+      }}
     />
 
     <section aria-labelledby="sources">
-      <h2 id="sources">出典・確認元</h2>
+      <h2 id="sources">{ui.sources}</h2>
       {
         entry.data.sources.length > 0 ? (
           <ul>
@@ -94,7 +115,7 @@ const editUrl = sourcePath
             ))}
           </ul>
         ) : (
-          <p class="muted">公開前に確認元を追加する必要があります。</p>
+          <p class="muted">{ui.sourcesPending}</p>
         )
       }
     </section>
@@ -102,7 +123,7 @@ const editUrl = sourcePath
     <p class="content-state">
       <a href={editUrl}>GitHub</a>
       <a href="https://github.com/noetheca/mathematics/issues/new/choose">
-        問題を報告
+        {ui.reportIssue}
       </a>
     </p>
   </article>
