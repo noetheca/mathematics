@@ -34,8 +34,8 @@ pnpm dev
 The development site is served under `/mathematics/`, matching GitHub Pages.
 
 The cross-repository GitHub Actions job and Pages deployment stay skipped while
-this repository is private. They activate after the code and content licenses
-are approved and the repositories are made public.
+this repository is private. They activate after the repositories are made
+public.
 
 ## Content
 
@@ -45,5 +45,6 @@ All included knowledge text is a draft until reviewed.
 
 ## Licensing
 
-The content license has not yet been approved. No license file is included, and
-external contributions are not currently accepted.
+Source code is licensed under MPL 2.0. Knowledge content under `concepts/**` is
+licensed under CC BY-SA 4.0. See [`LICENSING.md`](LICENSING.md) for the
+path-level scope and [`ATTRIBUTION.md`](ATTRIBUTION.md) for credits.
