@@ -65,16 +65,9 @@ const editUrl = sourcePath
   locale={locale}
 >
   <article>
-    <p class="eyebrow">{concept.metadata.id}</p>
+    <p class="eyebrow">{concept.metadata.id.replaceAll("/", " / ")}</p>
     <h1>{entry.data.title}</h1>
     <p class="lede">{entry.data.summary}</p>
-    <p class="content-state">
-      <span>状態: {entry.data.status}</span>
-      <a href={editUrl}>GitHubで編集</a>
-      <a href="https://github.com/noetheca/mathematics/issues/new/choose">
-        Issueを作成
-      </a>
-    </p>
 
     <div class="prose">
       <Content />
@@ -105,6 +98,14 @@ const editUrl = sourcePath
         )
       }
     </section>
+
+    <p class="content-state">
+      <span>状態: {entry.data.status}</span>
+      <a href={editUrl}>GitHubで編集</a>
+      <a href="https://github.com/noetheca/mathematics/issues/new/choose">
+        Issueを作成
+      </a>
+    </p>
   </article>
 </KnowledgeLayout>
 
@@ -115,7 +116,7 @@ const editUrl = sourcePath
     display: flex;
     flex-wrap: wrap;
     gap: 0.6rem 1rem;
-    margin-block: 2rem;
+    margin-block: 3rem 0;
     padding-block: 0.8rem;
   }
 
