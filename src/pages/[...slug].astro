@@ -1,21 +1,21 @@
 ---
 import ConceptRelations from "@noetheca/knowledge-engine/components/ConceptRelations.astro";
 import KnowledgeLayout from "@noetheca/knowledge-engine/components/KnowledgeLayout.astro";
-import { type Concept } from "@noetheca/knowledge-engine";
+import {
+  getUiStrings,
+  type Concept,
+  type KnowledgeLanguageOption,
+} from "@noetheca/knowledge-engine";
 import { render, type CollectionEntry } from "astro:content";
 import { loadConceptEntries } from "../lib/concept-entries";
-import {
-  getArticleStrings,
-  siteLanguages,
-  type SiteLanguageOption,
-} from "../lib/languages";
+import { siteLanguages } from "../lib/languages";
 import { conceptRoute, withBase } from "../lib/routes";
 
 interface Props {
   entry: CollectionEntry<"concepts">;
   concept: Concept;
   relationTitles: Record<string, string>;
-  languages: SiteLanguageOption[];
+  languages: KnowledgeLanguageOption[];
 }
 
 export async function getStaticPaths() {
@@ -55,7 +55,7 @@ export async function getStaticPaths() {
 const { entry, concept, relationTitles, languages } = Astro.props;
 const { Content } = await render(entry);
 const locale = entry.data.locale;
-const ui = getArticleStrings(locale);
+const ui = getUiStrings(locale).article;
 
 function relation(id: string) {
   const title = relationTitles[id];
@@ -109,7 +109,10 @@ const editUrl = sourcePath
                 {typeof source === "string" ? (
                   <a href={source}>{source}</a>
                 ) : (
-                  <a href={source.url}>{source.title}</a>
+                  <>
+                    <a href={source.url}>{source.title}</a>
+                    {source.note && <span> — {source.note}</span>}
+                  </>
                 )}
               </li>
             ))}
