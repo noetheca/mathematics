@@ -100,10 +100,9 @@ const editUrl = sourcePath
     </section>
 
     <p class="content-state">
-      <span>状態: {entry.data.status}</span>
-      <a href={editUrl}>GitHubで編集</a>
+      <a href={editUrl}>GitHub</a>
       <a href="https://github.com/noetheca/mathematics/issues/new/choose">
-        Issueを作成
+        問題を報告
       </a>
     </p>
   </article>
@@ -118,13 +117,6 @@ const editUrl = sourcePath
     gap: 0.6rem 1rem;
     margin-block: 3rem 0;
     padding-block: 0.8rem;
-  }
-
-  .content-state span {
-    background: var(--accent-soft);
-    border-radius: 100vw;
-    color: var(--accent);
-    padding: 0.15rem 0.65rem;
   }
 
   .prose {
