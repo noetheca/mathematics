@@ -35,7 +35,12 @@ const graph = createKnowledgeGraphModel(
 >
   <KnowledgeGraph
     graph={graph}
+    controls
     locale={locale}
     title="数学 Knowledge Map"
+    labels={{
+      interactionHint: "",
+      legend: "前提知識 → 次に学ぶ知識",
+    }}
   />
 </KnowledgeLayout>
