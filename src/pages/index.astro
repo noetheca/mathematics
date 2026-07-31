@@ -1,0 +1,84 @@
+---
+import { getCollection } from "astro:content";
+import KnowledgeLayout from "@noetheca/knowledge-engine/components/KnowledgeLayout.astro";
+import { conceptIdFromEntryId, conceptRoute, withBase } from "../lib/routes";
+
+const entries = (await getCollection("concepts")).sort((left, right) =>
+  left.data.title.localeCompare(right.data.title, "ja"),
+);
+---
+
+<KnowledgeLayout
+  title="数学"
+  summary="noethecaで試作中の数学Knowledge Baseです。"
+  locale="ja"
+>
+  <article>
+    <p class="eyebrow">Mathematics / prototype</p>
+    <h1>数学の知識を、関係からたどる。</h1>
+    <p class="lede">
+      安定した知識IDと、言語に依存しない前提・関連グラフを使う最初の試作です。
+      現在の本文、URL、表示形式はレビュー前の下書きです。
+    </p>
+
+    <section aria-labelledby="concept-list">
+      <h2 id="concept-list">概念一覧</h2>
+      <ul class="concept-list">
+        {
+          entries.map((entry) => {
+            const conceptId = conceptIdFromEntryId(
+              entry.id,
+              entry.data.locale,
+            );
+            return (
+              <li>
+                <a href={withBase(conceptRoute(entry.data.locale, conceptId))}>
+                  <strong>{entry.data.title}</strong>
+                  <span>{entry.data.summary}</span>
+                </a>
+                <small>{entry.data.status}</small>
+              </li>
+            );
+          })
+        }
+      </ul>
+    </section>
+  </article>
+</KnowledgeLayout>
+
+<style>
+  .concept-list {
+    display: grid;
+    gap: 0.8rem;
+    list-style: none;
+    padding: 0;
+  }
+
+  .concept-list li {
+    align-items: start;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 0.7rem;
+    display: grid;
+    gap: 0.5rem;
+    grid-template-columns: 1fr auto;
+    padding: 1rem;
+  }
+
+  .concept-list a {
+    display: grid;
+    gap: 0.2rem;
+    text-decoration: none;
+  }
+
+  .concept-list a span,
+  .concept-list small {
+    color: var(--muted);
+  }
+
+  .concept-list small {
+    border: 1px solid var(--line);
+    border-radius: 100vw;
+    padding: 0.15rem 0.55rem;
+  }
+</style>

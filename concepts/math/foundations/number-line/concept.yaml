@@ -1,0 +1,6 @@
+schemaVersion: 1
+id: math/foundations/number-line
+prerequisites:
+  - math/foundations/natural-numbers
+related:
+  - math/foundations/natural-numbers

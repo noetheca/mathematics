@@ -1,0 +1,140 @@
+---
+import { resolve } from "node:path";
+import ConceptRelations from "@noetheca/knowledge-engine/components/ConceptRelations.astro";
+import KnowledgeLayout from "@noetheca/knowledge-engine/components/KnowledgeLayout.astro";
+import { loadKnowledgeBase, type Concept } from "@noetheca/knowledge-engine";
+import { getCollection, render, type CollectionEntry } from "astro:content";
+import { conceptIdFromEntryId, conceptRoute, withBase } from "../lib/routes";
+
+interface Props {
+  entry: CollectionEntry<"concepts">;
+  concept: Concept;
+}
+
+export async function getStaticPaths() {
+  const entries = await getCollection("concepts");
+  const knowledgeBase = await loadKnowledgeBase(resolve("concepts"));
+  const errors = knowledgeBase.issues.filter(({ severity }) => severity === "error");
+  if (errors.length > 0) {
+    throw new Error(
+      `Knowledge validation failed before route generation:\n${errors
+        .map(({ code, message }) => `[${code}] ${message}`)
+        .join("\n")}`,
+    );
+  }
+  const concepts = new Map(
+    knowledgeBase.concepts.map((concept) => [concept.metadata.id, concept]),
+  );
+
+  return entries.map((entry) => {
+    const conceptId = conceptIdFromEntryId(entry.id, entry.data.locale);
+    const concept = concepts.get(conceptId);
+    if (!concept) {
+      throw new Error(`No concept metadata found for content entry "${entry.id}".`);
+    }
+    return {
+      params: {
+        slug: conceptRoute(entry.data.locale, conceptId),
+      },
+      props: { entry, concept },
+    };
+  });
+}
+
+const { entry, concept } = Astro.props;
+const { Content } = await render(entry);
+const locale = entry.data.locale;
+
+const allTranslations = new Map(
+  (await getCollection("concepts")).map((item) => [
+    `${conceptIdFromEntryId(item.id, item.data.locale)}:${item.data.locale}`,
+    item,
+  ]),
+);
+
+function relation(id: string) {
+  const localized = allTranslations.get(`${id}:${locale}`);
+  return {
+    id,
+    title: localized?.data.title,
+    href: localized ? withBase(conceptRoute(locale, id)) : undefined,
+  };
+}
+
+const sourcePath = entry.filePath?.replaceAll("\\", "/");
+const editUrl = sourcePath
+  ? `https://github.com/noetheca/mathematics/edit/main/${sourcePath}`
+  : "https://github.com/noetheca/mathematics";
+---
+
+<KnowledgeLayout
+  title={entry.data.title}
+  summary={entry.data.summary}
+  locale={locale}
+>
+  <article>
+    <p class="eyebrow">{concept.metadata.id}</p>
+    <h1>{entry.data.title}</h1>
+    <p class="lede">{entry.data.summary}</p>
+    <p class="content-state">
+      <span>状態: {entry.data.status}</span>
+      <a href={editUrl}>GitHubで編集</a>
+      <a href="https://github.com/noetheca/mathematics/issues/new/choose">
+        Issueを作成
+      </a>
+    </p>
+
+    <div class="prose">
+      <Content />
+    </div>
+
+    <ConceptRelations
+      prerequisites={concept.metadata.prerequisites.map(relation)}
+      related={concept.metadata.related.map(relation)}
+    />
+
+    <section aria-labelledby="sources">
+      <h2 id="sources">出典・確認元</h2>
+      {
+        entry.data.sources.length > 0 ? (
+          <ul>
+            {entry.data.sources.map((source) => (
+              <li>
+                {typeof source === "string" ? (
+                  <a href={source}>{source}</a>
+                ) : (
+                  <a href={source.url}>{source.title}</a>
+                )}
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p class="muted">公開前に確認元を追加する必要があります。</p>
+        )
+      }
+    </section>
+  </article>
+</KnowledgeLayout>
+
+<style>
+  .content-state {
+    align-items: center;
+    border-block: 1px solid var(--line);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem 1rem;
+    margin-block: 2rem;
+    padding-block: 0.8rem;
+  }
+
+  .content-state span {
+    background: var(--accent-soft);
+    border-radius: 100vw;
+    color: var(--accent);
+    padding: 0.15rem 0.65rem;
+  }
+
+  .prose {
+    margin-top: 2.5rem;
+  }
+</style>
