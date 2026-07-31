@@ -1,6 +1,7 @@
 {
   "name": "@noetheca/mathematics",
   "version": "0.0.0",
+  "license": "MPL-2.0",
   "private": true,
   "description": "The first mathematics content domain for noetheca.",
   "type": "module",
