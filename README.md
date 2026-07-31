@@ -43,6 +43,9 @@ See the shared
 [`content-contract.md`](https://github.com/noetheca/knowledge-engine/blob/main/docs/content-contract.md).
 All included knowledge text is a draft until reviewed.
 
+Concept directories are organizational only. Routes and relationships use the
+stable ID from `concept.yaml`; moving a directory must not change that ID.
+
 ## Licensing
 
 The content license has not yet been approved. No license file is included, and

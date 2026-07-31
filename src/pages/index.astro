@@ -1,10 +1,10 @@
 ---
-import { getCollection } from "astro:content";
 import KnowledgeLayout from "@noetheca/knowledge-engine/components/KnowledgeLayout.astro";
-import { conceptIdFromEntryId, conceptRoute, withBase } from "../lib/routes";
+import { loadConceptEntries } from "../lib/concept-entries";
+import { conceptRoute, withBase } from "../lib/routes";
 
-const entries = (await getCollection("concepts")).sort((left, right) =>
-  left.data.title.localeCompare(right.data.title, "ja"),
+const records = (await loadConceptEntries()).sort((left, right) =>
+  left.entry.data.title.localeCompare(right.entry.data.title, "ja"),
 );
 ---
 
@@ -25,11 +25,8 @@ const entries = (await getCollection("concepts")).sort((left, right) =>
       <h2 id="concept-list">概念一覧</h2>
       <ul class="concept-list">
         {
-          entries.map((entry) => {
-            const conceptId = conceptIdFromEntryId(
-              entry.id,
-              entry.data.locale,
-            );
+          records.map(({ entry, concept }) => {
+            const conceptId = concept.metadata.id;
             return (
               <li>
                 <a href={withBase(conceptRoute(entry.data.locale, conceptId))}>
