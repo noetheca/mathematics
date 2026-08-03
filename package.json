@@ -8,12 +8,20 @@
   "scripts": {
     "engine": "pnpm --dir ../knowledge-engine build",
     "validate": "pnpm engine && noetheca-knowledge validate concepts",
+    "validate:format-samples": "pnpm engine && noetheca-knowledge validate docs/samples/format-validation",
+    "audit:structure": "node scripts/audit-article-structure.mjs",
+    "audit:sources": "node scripts/audit-sources.mjs",
+    "audit:math": "node scripts/audit-math-notation.mjs",
+    "audit:prerequisites": "node scripts/audit-prerequisites.mjs",
+    "audit:ruby": "node scripts/audit-ruby.mjs",
+    "audit:svg": "node scripts/audit-svg.mjs",
+    "audit:interactives": "node scripts/audit-interactives.mjs",
     "manifest": "noetheca-knowledge manifest concepts public/manifest.json",
     "dev": "pnpm validate && pnpm manifest && astro dev",
     "build": "pnpm validate && pnpm manifest && astro build",
     "preview": "astro preview",
     "typecheck": "astro check",
-    "check": "pnpm typecheck && pnpm build"
+    "check": "pnpm audit:structure && pnpm audit:sources && pnpm audit:math && pnpm audit:prerequisites && pnpm audit:ruby && pnpm audit:svg && pnpm audit:interactives && pnpm typecheck && pnpm build"
   },
   "engines": {
     "node": ">=24 <25"

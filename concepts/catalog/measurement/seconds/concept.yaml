@@ -1,0 +1,6 @@
+schemaVersion: 1
+id: math/measurement/seconds
+prerequisites:
+  - math/measurement/duration-and-time-units
+  - math/arithmetic/multiplication-table
+related: []

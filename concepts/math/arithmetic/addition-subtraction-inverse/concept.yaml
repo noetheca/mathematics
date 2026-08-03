@@ -1,0 +1,10 @@
+schemaVersion: 1
+id: math/arithmetic/addition-subtraction-inverse
+prerequisites:
+  - math/arithmetic/addition
+  - math/arithmetic/subtraction
+related:
+  - math/arithmetic/addition-calculation
+  - math/arithmetic/subtraction-calculation
+  - math/arithmetic/addition-properties
+  - math/algebra/unknown-box-equations

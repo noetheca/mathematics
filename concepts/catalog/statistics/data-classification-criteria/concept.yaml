@@ -1,0 +1,5 @@
+schemaVersion: 1
+id: math/statistics/data-classification-criteria
+prerequisites:
+  - math/statistics/categorical-data
+related: []

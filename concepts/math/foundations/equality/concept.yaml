@@ -1,0 +1,6 @@
+schemaVersion: 1
+id: math/foundations/equality
+prerequisites: []
+related:
+  - math/foundations/natural-number-order
+  - math/foundations/axiomatic-method

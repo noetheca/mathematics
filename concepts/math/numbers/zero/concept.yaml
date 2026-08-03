@@ -1,0 +1,7 @@
+schemaVersion: 1
+id: math/numbers/zero
+prerequisites:
+  - math/numbers/counting-and-cardinality
+related:
+  - math/foundations/natural-numbers
+  - math/numbers/base-ten-place-value

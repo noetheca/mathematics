@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 360">
+  <title>四つの直角をもつ長方形</title>
+  <desc>長方形の四隅に直角を表す小さな四角い印がある図</desc>
+  <rect width="620" height="360" rx="18" fill="#f8fafc"/>
+  <rect x="95" y="65" width="430" height="230" fill="#dbeafe" stroke="#2563eb" stroke-width="8"/>
+  <path d="M95 100 H130 V65 M490 65 V100 H525 M525 260 H490 V295 M130 295 V260 H95" fill="none" stroke="#dc2626" stroke-width="6"/>
+  <text x="244" y="44" font-size="24" fill="#1e3a8a">長方形</text>
+</svg>

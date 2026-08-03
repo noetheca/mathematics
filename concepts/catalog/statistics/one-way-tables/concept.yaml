@@ -1,0 +1,6 @@
+schemaVersion: 1
+id: math/statistics/one-way-tables
+prerequisites:
+  - math/statistics/frequency-counts
+  - math/statistics/data-classification-criteria
+related: []

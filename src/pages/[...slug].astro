@@ -1,4 +1,5 @@
 ---
+import ArticleDirectives from "@noetheca/knowledge-engine/components/ArticleDirectives.astro";
 import ConceptRelations from "@noetheca/knowledge-engine/components/ConceptRelations.astro";
 import KnowledgeLayout from "@noetheca/knowledge-engine/components/KnowledgeLayout.astro";
 import {
@@ -87,6 +88,7 @@ const editUrl = sourcePath
     <div class="prose">
       <Content />
     </div>
+    <ArticleDirectives />
 
     <ConceptRelations
       prerequisites={concept.metadata.prerequisites.map(relation)}
@@ -146,4 +148,10 @@ const editUrl = sourcePath
   .prose {
     margin-top: 2.5rem;
   }
+
+  :global(.prose img) {
+    height: auto;
+    max-width: 100%;
+  }
+
 </style>

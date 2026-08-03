@@ -1,0 +1,6 @@
+schemaVersion: 1
+id: math/numbers/counting-and-cardinality
+prerequisites:
+  - math/foundations/one-to-one-correspondence
+related:
+  - math/foundations/natural-numbers

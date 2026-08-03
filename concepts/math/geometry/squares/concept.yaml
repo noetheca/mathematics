@@ -1,0 +1,9 @@
+schemaVersion: 1
+id: math/geometry/squares
+prerequisites:
+  - math/geometry/rectangles
+  - math/measurement/length
+related:
+  - math/geometry/distance-and-congruence
+  - math/geometry/box-shaped-solids
+  - math/geometry/shape-tilings

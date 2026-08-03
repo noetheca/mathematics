@@ -1,0 +1,7 @@
+schemaVersion: 1
+id: math/arithmetic/simple-two-digit-division
+prerequisites:
+  - math/arithmetic/division
+  - math/numbers/base-ten-place-value
+  - math/arithmetic/multiplication-properties
+related: []

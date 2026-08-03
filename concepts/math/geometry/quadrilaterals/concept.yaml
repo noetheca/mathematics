@@ -1,0 +1,8 @@
+schemaVersion: 1
+id: math/geometry/quadrilaterals
+prerequisites:
+  - math/geometry/shape-elements
+related:
+  - math/geometry/rectangles
+  - math/geometry/squares
+  - math/geometry/shape-tilings

@@ -1,0 +1,6 @@
+schemaVersion: 1
+id: math/arithmetic/division-with-remainder
+prerequisites:
+  - math/arithmetic/division
+  - math/foundations/natural-number-order
+related: []

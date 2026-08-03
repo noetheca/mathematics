@@ -1,0 +1,6 @@
+schemaVersion: 1
+id: math/algebra/unknown-box-equations
+prerequisites:
+  - math/arithmetic/addition-subtraction-inverse
+  - math/arithmetic/division
+related: []

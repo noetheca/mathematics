@@ -1,0 +1,7 @@
+schemaVersion: 1
+id: math/arithmetic/tenths-decimal-addition-subtraction
+prerequisites:
+  - math/numbers/tenths-decimals
+  - math/arithmetic/addition-calculation
+  - math/arithmetic/subtraction-calculation
+related: []

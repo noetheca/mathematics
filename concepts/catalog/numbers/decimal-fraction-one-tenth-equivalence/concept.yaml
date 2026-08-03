@@ -1,0 +1,6 @@
+schemaVersion: 1
+id: math/numbers/decimal-fraction-one-tenth-equivalence
+prerequisites:
+  - math/numbers/tenths-decimals
+  - math/numbers/fractions-as-unit-fraction-counts
+related: []

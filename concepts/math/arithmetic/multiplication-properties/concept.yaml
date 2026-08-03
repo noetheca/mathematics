@@ -1,0 +1,8 @@
+schemaVersion: 1
+id: math/arithmetic/multiplication-properties
+prerequisites:
+  - math/arithmetic/multiplication-table
+related:
+  - math/foundations/natural-number-arithmetic
+  - math/arithmetic/multiplication-beyond-tables
+  - math/arithmetic/multi-digit-multiplication

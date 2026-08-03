@@ -1,0 +1,6 @@
+schemaVersion: 1
+id: math/geometry/point-line-plane
+prerequisites: []
+related:
+  - math/geometry/betweenness-and-segments
+  - math/geometry/euclidean-axioms

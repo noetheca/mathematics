@@ -1,0 +1,8 @@
+schemaVersion: 1
+id: math/foundations/sets-functions-and-relations
+prerequisites:
+  - math/foundations/equality
+  - math/foundations/propositions-and-logical-connectives
+related:
+  - math/foundations/predicates-and-quantifiers
+  - math/foundations/axiomatic-method

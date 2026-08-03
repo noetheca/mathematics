@@ -1,0 +1,8 @@
+schemaVersion: 1
+id: math/foundations/natural-number-order
+prerequisites:
+  - math/foundations/equality
+  - math/foundations/natural-numbers
+related:
+  - math/foundations/number-line
+  - math/foundations/quantities-and-units

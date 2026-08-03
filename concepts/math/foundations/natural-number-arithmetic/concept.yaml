@@ -1,0 +1,7 @@
+schemaVersion: 1
+id: math/foundations/natural-number-arithmetic
+prerequisites:
+  - math/foundations/peano-axioms
+related:
+  - math/foundations/natural-numbers
+  - math/foundations/natural-number-order

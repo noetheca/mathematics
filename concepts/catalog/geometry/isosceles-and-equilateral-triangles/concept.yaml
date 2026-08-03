@@ -1,0 +1,7 @@
+schemaVersion: 1
+id: math/geometry/isosceles-and-equilateral-triangles
+prerequisites:
+  - math/geometry/triangles
+  - math/geometry/angle-and-right-angle
+  - math/measurement/length
+related: []

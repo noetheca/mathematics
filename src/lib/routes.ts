@@ -4,5 +4,6 @@ export function conceptRoute(locale: string, conceptId: string): string {
 
 export function withBase(path: string): string {
   const base = import.meta.env.BASE_URL.replace(/\/$/, "");
-  return `${base}/${path.replace(/^\//, "")}/`;
+  const normalizedPath = path.replace(/^\//, "").replace(/\/$/, "");
+  return normalizedPath ? `${base}/${normalizedPath}/` : `${base}/`;
 }

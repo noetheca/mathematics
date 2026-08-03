@@ -1,0 +1,7 @@
+schemaVersion: 1
+id: math/geometry/circles-and-compass
+prerequisites:
+  - math/geometry/shape-recognition
+  - math/geometry/betweenness-and-segments
+  - math/measurement/length
+related: []

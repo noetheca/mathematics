@@ -1,0 +1,7 @@
+schemaVersion: 1
+id: math/geometry/euclidean-axioms
+prerequisites:
+  - math/foundations/axiomatic-method
+  - math/geometry/distance-and-congruence
+related:
+  - math/foundations/peano-axioms

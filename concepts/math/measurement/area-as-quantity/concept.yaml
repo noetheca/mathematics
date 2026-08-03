@@ -1,0 +1,8 @@
+schemaVersion: 1
+id: math/measurement/area-as-quantity
+prerequisites:
+  - math/measurement/direct-and-indirect-comparison
+related:
+  - math/foundations/quantities-and-units
+  - math/geometry/shape-recognition
+  - math/geometry/rectangle-area

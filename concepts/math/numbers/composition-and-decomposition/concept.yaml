@@ -1,0 +1,7 @@
+schemaVersion: 1
+id: math/numbers/composition-and-decomposition
+prerequisites:
+  - math/foundations/natural-numbers
+related:
+  - math/arithmetic/addition
+  - math/arithmetic/subtraction

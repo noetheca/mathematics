@@ -1,0 +1,6 @@
+schemaVersion: 1
+id: math/geometry/shape-composition-decomposition
+prerequisites:
+  - math/geometry/shape-recognition
+related:
+  - math/geometry/shape-tilings

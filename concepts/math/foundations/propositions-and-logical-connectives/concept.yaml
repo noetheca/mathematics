@@ -1,0 +1,6 @@
+schemaVersion: 1
+id: math/foundations/propositions-and-logical-connectives
+prerequisites: []
+related:
+  - math/foundations/predicates-and-quantifiers
+  - math/foundations/proof-and-counterexample

@@ -1,0 +1,9 @@
+schemaVersion: 1
+id: math/geometry/shape-elements
+prerequisites:
+  - math/geometry/shape-recognition
+  - math/geometry/betweenness-and-segments
+related:
+  - math/geometry/triangles
+  - math/geometry/quadrilaterals
+  - math/geometry/box-shaped-solids

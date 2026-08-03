@@ -1,0 +1,6 @@
+schemaVersion: 1
+id: math/geometry/shape-recognition
+prerequisites: []
+related:
+  - math/geometry/shape-composition-decomposition
+  - math/geometry/solid-shape-foundations

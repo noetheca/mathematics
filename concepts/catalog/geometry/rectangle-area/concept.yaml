@@ -1,0 +1,8 @@
+schemaVersion: 1
+id: math/geometry/rectangle-area
+prerequisites:
+  - math/geometry/rectangles
+  - math/measurement/area-as-quantity
+  - math/measurement/length
+  - math/arithmetic/multiplication
+related: []

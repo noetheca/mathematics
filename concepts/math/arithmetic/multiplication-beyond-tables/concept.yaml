@@ -1,0 +1,8 @@
+schemaVersion: 1
+id: math/arithmetic/multiplication-beyond-tables
+prerequisites:
+  - math/numbers/base-ten-place-value
+  - math/arithmetic/multiplication-table
+related:
+  - math/arithmetic/multiplication-properties
+  - math/arithmetic/multi-digit-multiplication

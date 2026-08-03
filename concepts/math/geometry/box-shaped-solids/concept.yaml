@@ -1,0 +1,6 @@
+schemaVersion: 1
+id: math/geometry/box-shaped-solids
+prerequisites:
+  - math/geometry/solid-shape-foundations
+  - math/geometry/squares
+related: []

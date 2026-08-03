@@ -1,0 +1,7 @@
+schemaVersion: 1
+id: math/foundations/predicates-and-quantifiers
+prerequisites:
+  - math/foundations/sets-functions-and-relations
+related:
+  - math/foundations/equality
+  - math/foundations/proof-and-counterexample

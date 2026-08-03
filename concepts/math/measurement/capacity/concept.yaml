@@ -1,0 +1,8 @@
+schemaVersion: 1
+id: math/measurement/capacity
+prerequisites:
+  - math/measurement/direct-and-indirect-comparison
+related:
+  - math/foundations/quantities-and-units
+  - math/measurement/nonstandard-unit-measurement
+  - math/measurement/metric-capacity-units

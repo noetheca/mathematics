@@ -1,0 +1,10 @@
+schemaVersion: 1
+id: math/numbers/base-ten-place-value
+prerequisites:
+  - math/numbers/zero
+  - math/numbers/grouped-counting
+related:
+  - math/foundations/number-line
+  - math/arithmetic/addition-calculation
+  - math/arithmetic/subtraction-calculation
+  - math/arithmetic/multiplication-beyond-tables

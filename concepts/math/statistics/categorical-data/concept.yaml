@@ -1,0 +1,6 @@
+schemaVersion: 1
+id: math/statistics/categorical-data
+prerequisites: []
+related:
+  - math/statistics/frequency-counts
+  - math/statistics/picture-and-symbol-graphs

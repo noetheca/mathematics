@@ -1,0 +1,8 @@
+schemaVersion: 1
+id: math/numbers/numerals-as-labels
+prerequisites:
+  - math/foundations/natural-numbers
+related:
+  - math/numbers/counting-and-cardinality
+  - math/numbers/base-ten-place-value
+  - math/foundations/number-line

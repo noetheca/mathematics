@@ -7,6 +7,23 @@ import { siteLanguages } from "../lib/languages";
 import { conceptRoute, withBase } from "../lib/routes";
 
 const locale = "ja";
+const groupLabels: Record<string, string> = {
+  algebra: "式と代数",
+  arithmetic: "計算",
+  foundations: "数学の基礎",
+  geometry: "図形",
+  measurement: "測定",
+  numbers: "数",
+  statistics: "データ",
+  tools: "計算道具",
+};
+const groupForConcept = (id: string) => {
+  const [, family = "other"] = id.split("/");
+  return {
+    group: `mathematics/${family}`,
+    groupLabel: groupLabels[family] ?? family,
+  };
+};
 const records = (await loadConceptEntries())
   .filter(({ entry }) => entry.data.locale === locale)
   .sort((left, right) =>
@@ -19,6 +36,7 @@ const graph = createKnowledgeGraphModel(
     summary: entry.data.summary,
     status: entry.data.status,
     href: withBase(conceptRoute(entry.data.locale, concept.metadata.id)),
+    ...groupForConcept(concept.metadata.id),
     prerequisites: concept.metadata.prerequisites,
     related: concept.metadata.related,
   })),
@@ -33,14 +51,26 @@ const graph = createKnowledgeGraphModel(
   languages={siteLanguages}
   immersive
 >
+  <p class="scope-link">
+    <a href={withBase("ja/elementary-through-grade-3")}>小学3年までの収録範囲と前提一覧</a>
+  </p>
   <KnowledgeGraph
     graph={graph}
     controls
+    debug={import.meta.env.DEV}
     locale={locale}
     title="数学 Knowledge Map"
     labels={{
       interactionHint: "",
-      legend: "前提知識 → 次に学ぶ知識",
+      legend: "細い線は前提関係です。ノードを選ぶと直接の関係を強調します",
     }}
   />
 </KnowledgeLayout>
+
+<style>
+  .scope-link {
+    margin: 0;
+    padding: 0.75rem 1rem 0;
+    text-align: center;
+  }
+</style>

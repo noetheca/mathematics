@@ -1,0 +1,8 @@
+schemaVersion: 1
+id: math/tools/soroban
+prerequisites:
+  - math/numbers/large-number-place-value
+  - math/numbers/tenths-decimals
+  - math/arithmetic/addition-calculation
+  - math/arithmetic/subtraction-calculation
+related: []

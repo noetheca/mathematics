@@ -1,0 +1,7 @@
+schemaVersion: 1
+id: math/geometry/angle-and-right-angle
+prerequisites:
+  - math/geometry/betweenness-and-segments
+related:
+  - math/geometry/distance-and-congruence
+  - math/geometry/euclidean-axioms

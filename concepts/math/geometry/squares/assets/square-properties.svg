@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 400">
+  <title>正方形の等しい辺と四つの直角</title>
+  <desc>四隅に直角の印、四辺に同じ長さを示す印がある正方形</desc>
+  <rect width="520" height="400" rx="18" fill="#f8fafc"/>
+  <rect x="120" y="60" width="280" height="280" fill="#dcfce7" stroke="#15803d" stroke-width="8"/>
+  <path d="M120 96 H156 V60 M364 60 V96 H400 M400 304 H364 V340 M156 340 V304 H120" fill="none" stroke="#dc2626" stroke-width="6"/>
+  <path d="M252 48 V72 M252 328 V352 M108 192 H132 M388 192 H412" stroke="#7c3aed" stroke-width="7" stroke-linecap="round"/>
+</svg>

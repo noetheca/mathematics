@@ -1,0 +1,8 @@
+schemaVersion: 1
+id: math/arithmetic/addition
+prerequisites:
+  - math/foundations/equality
+  - math/numbers/composition-and-decomposition
+related:
+  - math/arithmetic/subtraction
+  - math/arithmetic/addition-calculation

@@ -1,0 +1,7 @@
+schemaVersion: 1
+id: math/numbers/tenths-decimals
+prerequisites:
+  - math/numbers/base-ten-place-value
+  - math/numbers/unit-fractions
+  - math/foundations/number-line
+related: []

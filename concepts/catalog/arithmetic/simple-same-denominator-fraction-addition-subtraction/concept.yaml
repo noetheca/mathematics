@@ -1,0 +1,7 @@
+schemaVersion: 1
+id: math/arithmetic/simple-same-denominator-fraction-addition-subtraction
+prerequisites:
+  - math/numbers/fractions-as-unit-fraction-counts
+  - math/arithmetic/addition
+  - math/arithmetic/subtraction
+related: []

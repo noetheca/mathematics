@@ -1,6 +1,6 @@
 schemaVersion: 1
 id: math/foundations/number-line
 prerequisites:
-  - math/foundations/natural-numbers
+  - math/foundations/natural-number-order
 related:
-  - math/foundations/natural-numbers
+  - math/foundations/quantities-and-units

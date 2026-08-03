@@ -1,0 +1,7 @@
+schemaVersion: 1
+id: math/geometry/betweenness-and-segments
+prerequisites:
+  - math/geometry/point-line-plane
+related:
+  - math/geometry/angle-and-right-angle
+  - math/geometry/euclidean-axioms

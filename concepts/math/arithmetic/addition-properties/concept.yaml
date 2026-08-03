@@ -1,0 +1,8 @@
+schemaVersion: 1
+id: math/arithmetic/addition-properties
+prerequisites:
+  - math/arithmetic/addition
+related:
+  - math/arithmetic/addition-calculation
+  - math/arithmetic/addition-subtraction-inverse
+  - math/foundations/natural-number-arithmetic

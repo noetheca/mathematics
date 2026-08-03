@@ -3,3 +3,5 @@ id: math/foundations/natural-numbers
 prerequisites: []
 related:
   - math/foundations/number-line
+  - math/foundations/natural-number-order
+  - math/foundations/peano-axioms

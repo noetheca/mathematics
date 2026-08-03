@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 300">
+  <title>三角形の辺と頂点</title>
+  <desc>三本の青い辺と、三つの赤い頂点からなる三角形</desc>
+  <rect width="520" height="300" rx="18" fill="#f8fafc"/>
+  <path d="M260 45 L80 245 L440 245 Z" fill="#dbeafe" stroke="#2563eb" stroke-width="8" stroke-linejoin="round"/>
+  <circle cx="260" cy="45" r="11" fill="#dc2626"/>
+  <circle cx="80" cy="245" r="11" fill="#dc2626"/>
+  <circle cx="440" cy="245" r="11" fill="#dc2626"/>
+  <text x="272" y="42" font-size="25" fill="#7f1d1d">ちょうてん</text>
+  <text x="244" y="280" font-size="25" fill="#1e3a8a">へん</text>
+</svg>

@@ -1,0 +1,6 @@
+schemaVersion: 1
+id: math/arithmetic/addition-calculation
+prerequisites:
+  - math/arithmetic/addition
+related:
+  - math/arithmetic/subtraction-calculation

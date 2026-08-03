@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 360">
+  <title>正方形と三角形の敷き詰め</title>
+  <desc>左に正方形の敷き詰め、右に直角三角形を交互に並べた敷き詰めを示す図</desc>
+  <rect width="720" height="360" rx="18" fill="#f8fafc"/>
+  <g stroke="#1d4ed8" stroke-width="4">
+    <rect x="40" y="60" width="90" height="90" fill="#dbeafe"/>
+    <rect x="130" y="60" width="90" height="90" fill="#bfdbfe"/>
+    <rect x="220" y="60" width="90" height="90" fill="#dbeafe"/>
+    <rect x="40" y="150" width="90" height="90" fill="#bfdbfe"/>
+    <rect x="130" y="150" width="90" height="90" fill="#dbeafe"/>
+    <rect x="220" y="150" width="90" height="90" fill="#bfdbfe"/>
+  </g>
+  <g stroke="#15803d" stroke-width="4" stroke-linejoin="round">
+    <path d="M410 60 H500 V150 Z" fill="#dcfce7"/>
+    <path d="M410 60 V150 H500 Z" fill="#bbf7d0"/>
+    <path d="M500 60 H590 V150 Z" fill="#bbf7d0"/>
+    <path d="M500 60 V150 H590 Z" fill="#dcfce7"/>
+    <path d="M410 150 H500 V240 Z" fill="#bbf7d0"/>
+    <path d="M410 150 V240 H500 Z" fill="#dcfce7"/>
+    <path d="M500 150 H590 V240 Z" fill="#dcfce7"/>
+    <path d="M500 150 V240 H590 Z" fill="#bbf7d0"/>
+  </g>
+  <text x="85" y="292" font-size="24" fill="#1e3a8a">正方形</text>
+  <text x="455" y="292" font-size="24" fill="#166534">三角形</text>
+</svg>

@@ -1,0 +1,7 @@
+schemaVersion: 1
+id: math/foundations/peano-axioms
+prerequisites:
+  - math/foundations/axiomatic-method
+  - math/foundations/mathematical-induction
+related:
+  - math/foundations/natural-number-arithmetic

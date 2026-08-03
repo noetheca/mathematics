@@ -1,0 +1,5 @@
+schemaVersion: 1
+id: math/arithmetic/multi-digit-subtraction
+prerequisites:
+  - math/arithmetic/two-digit-and-simple-three-digit-subtraction
+related: []

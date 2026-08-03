@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 260">
+  <title>向きや形の違う三角形</title>
+  <desc>幅の広い三角形、細長い三角形、横向きの三角形を並べた図</desc>
+  <rect width="680" height="260" rx="18" fill="#f8fafc"/>
+  <path d="M45 205 L145 45 L245 205 Z" fill="#dbeafe" stroke="#2563eb" stroke-width="7" stroke-linejoin="round"/>
+  <path d="M300 205 L345 28 L390 205 Z" fill="#dcfce7" stroke="#15803d" stroke-width="7" stroke-linejoin="round"/>
+  <path d="M460 65 L635 130 L460 205 Z" fill="#fef3c7" stroke="#b45309" stroke-width="7" stroke-linejoin="round"/>
+</svg>

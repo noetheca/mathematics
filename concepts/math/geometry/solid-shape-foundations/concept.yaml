@@ -1,0 +1,6 @@
+schemaVersion: 1
+id: math/geometry/solid-shape-foundations
+prerequisites:
+  - math/geometry/shape-recognition
+related:
+  - math/geometry/box-shaped-solids

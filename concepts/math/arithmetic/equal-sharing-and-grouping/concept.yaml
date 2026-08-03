@@ -1,0 +1,7 @@
+schemaVersion: 1
+id: math/arithmetic/equal-sharing-and-grouping
+prerequisites:
+  - math/numbers/grouped-counting
+related:
+  - math/numbers/unit-fractions
+  - math/arithmetic/multiplication

@@ -1,0 +1,6 @@
+schemaVersion: 1
+id: math/statistics/evidence-from-tables-and-graphs
+prerequisites:
+  - math/statistics/simple-two-way-tables
+  - math/statistics/bar-graphs
+related: []

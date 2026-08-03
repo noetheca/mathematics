@@ -1,0 +1,7 @@
+schemaVersion: 1
+id: math/foundations/axiomatic-method
+prerequisites:
+  - math/foundations/proof-and-counterexample
+related:
+  - math/foundations/peano-axioms
+  - math/geometry/euclidean-axioms

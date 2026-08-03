@@ -1,0 +1,7 @@
+schemaVersion: 1
+id: math/arithmetic/two-digit-and-simple-three-digit-addition
+prerequisites:
+  - math/arithmetic/addition-calculation
+  - math/numbers/base-ten-place-value
+related:
+  - math/arithmetic/two-digit-and-simple-three-digit-subtraction

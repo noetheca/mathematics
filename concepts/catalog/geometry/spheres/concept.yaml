@@ -1,0 +1,6 @@
+schemaVersion: 1
+id: math/geometry/spheres
+prerequisites:
+  - math/geometry/solid-shape-foundations
+  - math/geometry/circles-and-compass
+related: []

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 430">
+  <title>箱の形の面・辺・頂点</title>
+  <desc>箱の形を立体的に描き、面、辺、頂点を矢印で示した図</desc>
+  <rect width="700" height="430" rx="18" fill="#f8fafc"/>
+  <path d="M165 145 L405 145 L535 65 L295 65 Z" fill="#dbeafe" stroke="#1d4ed8" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M405 145 L535 65 V285 L405 365 Z" fill="#bfdbfe" stroke="#1d4ed8" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M165 145 H405 V365 H165 Z" fill="#eff6ff" stroke="#1d4ed8" stroke-width="6" stroke-linejoin="round"/>
+  <circle cx="405" cy="145" r="10" fill="#dc2626"/>
+  <path d="M75 85 L175 135" stroke="#334155" stroke-width="4" marker-end="url(#arrow)"/>
+  <text x="28" y="79" font-size="24" fill="#0f172a">へん</text>
+  <path d="M600 95 L425 140" stroke="#334155" stroke-width="4" marker-end="url(#arrow)"/>
+  <text x="570" y="98" font-size="24" fill="#0f172a">ちょうてん</text>
+  <path d="M85 335 L245 265" stroke="#334155" stroke-width="4" marker-end="url(#arrow)"/>
+  <text x="35" y="350" font-size="24" fill="#0f172a">めん</text>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 Z" fill="#334155"/>
+    </marker>
+  </defs>
+</svg>

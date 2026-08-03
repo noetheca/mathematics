@@ -1,0 +1,7 @@
+schemaVersion: 1
+id: math/geometry/triangles
+prerequisites:
+  - math/geometry/shape-elements
+related:
+  - math/geometry/right-triangles
+  - math/geometry/shape-tilings

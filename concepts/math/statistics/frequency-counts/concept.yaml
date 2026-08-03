@@ -1,0 +1,7 @@
+schemaVersion: 1
+id: math/statistics/frequency-counts
+prerequisites:
+  - math/numbers/counting-and-cardinality
+  - math/statistics/categorical-data
+related:
+  - math/statistics/picture-and-symbol-graphs

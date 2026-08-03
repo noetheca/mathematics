@@ -1,0 +1,9 @@
+schemaVersion: 1
+id: math/arithmetic/multiplication
+prerequisites:
+  - math/numbers/grouped-counting
+  - math/arithmetic/addition
+related:
+  - math/arithmetic/equal-sharing-and-grouping
+  - math/arithmetic/multiplication-table
+  - math/arithmetic/division

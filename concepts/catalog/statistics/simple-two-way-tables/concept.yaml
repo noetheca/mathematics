@@ -1,0 +1,5 @@
+schemaVersion: 1
+id: math/statistics/simple-two-way-tables
+prerequisites:
+  - math/statistics/one-way-tables
+related: []

@@ -1,0 +1,7 @@
+schemaVersion: 1
+id: math/foundations/proof-and-counterexample
+prerequisites:
+  - math/foundations/predicates-and-quantifiers
+related:
+  - math/foundations/axiomatic-method
+  - math/foundations/mathematical-induction

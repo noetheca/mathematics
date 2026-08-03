@@ -1,0 +1,229 @@
+---
+import KnowledgeLayout from "@noetheca/knowledge-engine/components/KnowledgeLayout.astro";
+import { loadConceptEntries } from "../../lib/concept-entries";
+import { siteLanguages } from "../../lib/languages";
+import { conceptRoute, withBase } from "../../lib/routes";
+
+const locale = "ja";
+const groupOrder = [
+  "foundations",
+  "numbers",
+  "arithmetic",
+  "algebra",
+  "geometry",
+  "measurement",
+  "statistics",
+  "tools",
+];
+const groupLabels: Record<string, string> = {
+  foundations: "基礎・公理",
+  numbers: "数",
+  arithmetic: "計算",
+  algebra: "式",
+  geometry: "図形",
+  measurement: "測定",
+  statistics: "データ",
+  tools: "計算用具",
+};
+
+const allRecords = (await loadConceptEntries()).filter(
+  ({ entry }) => entry.data.locale === locale,
+);
+const titleById = new Map(
+  allRecords.map(({ entry, concept }) => [concept.metadata.id, entry.data.title]),
+);
+const records = allRecords
+  .filter(({ entry }) => {
+    const grade = entry.data.readingLevel?.grade;
+    return grade === undefined || grade <= 3;
+  })
+  .sort((left, right) => {
+    const leftGroup = left.concept.metadata.id.split("/")[1] ?? "";
+    const rightGroup = right.concept.metadata.id.split("/")[1] ?? "";
+    const groupDifference =
+      groupOrder.indexOf(leftGroup) - groupOrder.indexOf(rightGroup);
+    return (
+      groupDifference ||
+      left.entry.data.title.localeCompare(right.entry.data.title, locale)
+    );
+  });
+const interactiveCount = records.filter(({ translation }) =>
+  /^::interactive\[[^\r\n]+\]\{[^\r\n]+\}\s*$/mu.test(translation.body),
+).length;
+const groups = groupOrder
+  .map((group) => ({
+    group,
+    records: records.filter(
+      ({ concept }) => concept.metadata.id.split("/")[1] === group,
+    ),
+  }))
+  .filter(({ records }) => records.length > 0);
+---
+
+<KnowledgeLayout
+  title="小学3年までの算数・幾何と公理"
+  summary="収録範囲、記事どうしの直接の前提、参考文献の登録状況を確認できます。"
+  locale={locale}
+  domain="mathematics"
+  languages={siteLanguages}
+>
+  <article class="scope-page">
+    <p class="eyebrow">coverage / prerequisites / sources</p>
+    <h1>小学3年までの算数・幾何と公理</h1>
+    <p class="lede">
+      文部科学省「小学校学習指導要領解説 算数編」の第1〜3学年にある四領域と、説明に必要な公理・基礎概念を対象にしています。
+      各記事の「前提」は、形式的な証明の依存関係ではなく、その記事を読む前に理解しておきたい概念です。
+    </p>
+    <p>
+      <a href="https://www.mext.go.jp/content/20211102-mxt_kyoiku02-100002607_04.pdf">
+        収録範囲の基準資料（文部科学省・算数編）
+      </a>
+      ／ <a href={withBase("")}>知識マップへ戻る</a>
+    </p>
+
+    <aside class="scope-summary" aria-label="収録状況">
+      <strong>{records.length}記事</strong>
+      <span>{interactiveCount}記事に操作できる主図解があります。</span>
+      <span>すべての記事に1件以上の確認元を登録しています。</span>
+    </aside>
+
+    {
+      groups.map(({ group, records: groupRecords }) => (
+        <section aria-labelledby={`group-${group}`}>
+          <h2 id={`group-${group}`}>{groupLabels[group]}</h2>
+          <div class="table-scroll" tabindex="0">
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">記事</th>
+                  <th scope="col">最低読解学年</th>
+                  <th scope="col">直接の前提</th>
+                  <th scope="col">操作図解</th>
+                  <th scope="col">確認元</th>
+                </tr>
+              </thead>
+              <tbody>
+                {groupRecords.map(({ entry, concept, translation }) => (
+                  <tr>
+                    <th scope="row">
+                      <a
+                        href={withBase(
+                          conceptRoute(entry.data.locale, concept.metadata.id),
+                        )}
+                      >
+                        {entry.data.title}
+                      </a>
+                      <small>{concept.metadata.id}</small>
+                    </th>
+                    <td>
+                      {entry.data.readingLevel?.grade
+                        ? `小学${entry.data.readingLevel.grade}年`
+                        : "一般・発展"}
+                    </td>
+                    <td>
+                      {concept.metadata.prerequisites.length > 0 ? (
+                        <ul>
+                          {concept.metadata.prerequisites.map((id) => (
+                            <li>
+                              <a href={withBase(conceptRoute(locale, id))}>
+                                {titleById.get(id) ?? id}
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      ) : (
+                        "なし"
+                      )}
+                    </td>
+                    <td>
+                      {/^::interactive\[[^\r\n]+\]\{[^\r\n]+\}\s*$/mu.test(
+                        translation.body,
+                      )
+                        ? "あり"
+                        : "純粋形式のため省略"}
+                    </td>
+                    <td>{entry.data.sources.length}件</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+      ))
+    }
+  </article>
+</KnowledgeLayout>
+
+<style>
+  .scope-page {
+    margin-inline: auto;
+    max-width: 78rem;
+  }
+
+  .scope-summary {
+    align-items: baseline;
+    background: var(--surface-subtle, color-mix(in srgb, currentColor 5%, transparent));
+    border: 1px solid var(--line);
+    border-radius: 0.75rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+    margin-block: 2rem;
+    padding: 1rem 1.2rem;
+  }
+
+  .scope-summary strong {
+    font-size: 1.35rem;
+  }
+
+  section {
+    margin-block: 2.75rem;
+  }
+
+  .table-scroll {
+    border: 1px solid var(--line);
+    border-radius: 0.65rem;
+    overflow-x: auto;
+  }
+
+  table {
+    border-collapse: collapse;
+    min-width: 60rem;
+    width: 100%;
+  }
+
+  th,
+  td {
+    border-bottom: 1px solid var(--line);
+    padding: 0.75rem;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  thead th {
+    background: var(--surface-subtle, color-mix(in srgb, currentColor 5%, transparent));
+    font-size: 0.9rem;
+  }
+
+  tbody tr:last-child > * {
+    border-bottom: 0;
+  }
+
+  th[scope="row"] {
+    min-width: 15rem;
+  }
+
+  th small {
+    display: block;
+    font-family: var(--font-mono, monospace);
+    font-size: 0.72rem;
+    font-weight: 400;
+    margin-top: 0.25rem;
+    opacity: 0.65;
+  }
+
+  td ul {
+    margin: 0;
+    padding-left: 1.2rem;
+  }
+</style>

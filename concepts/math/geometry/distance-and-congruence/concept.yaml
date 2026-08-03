@@ -1,0 +1,7 @@
+schemaVersion: 1
+id: math/geometry/distance-and-congruence
+prerequisites:
+  - math/foundations/quantities-and-units
+  - math/geometry/angle-and-right-angle
+related:
+  - math/geometry/euclidean-axioms

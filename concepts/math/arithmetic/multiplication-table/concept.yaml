@@ -1,0 +1,8 @@
+schemaVersion: 1
+id: math/arithmetic/multiplication-table
+prerequisites:
+  - math/arithmetic/multiplication
+related:
+  - math/arithmetic/multiplication-properties
+  - math/arithmetic/multiplication-beyond-tables
+  - math/arithmetic/division

@@ -1,0 +1,6 @@
+schemaVersion: 1
+id: math/arithmetic/multi-digit-multiplication
+prerequisites:
+  - math/arithmetic/multiplication-beyond-tables
+  - math/arithmetic/multiplication-properties
+related: []

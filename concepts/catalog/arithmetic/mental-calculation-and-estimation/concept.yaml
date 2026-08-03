@@ -1,0 +1,8 @@
+schemaVersion: 1
+id: math/arithmetic/mental-calculation-and-estimation
+prerequisites:
+  - math/arithmetic/multi-digit-addition
+  - math/arithmetic/multi-digit-subtraction
+  - math/arithmetic/multi-digit-multiplication
+  - math/foundations/natural-number-order
+related: []

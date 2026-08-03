@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 280">
+  <title>形の違う四角形</title>
+  <desc>長方形、傾いた四角形、くぼみのある四角形を並べた図</desc>
+  <rect width="720" height="280" rx="18" fill="#f8fafc"/>
+  <path d="M40 65 H230 V215 H40 Z" fill="#dbeafe" stroke="#2563eb" stroke-width="7" stroke-linejoin="round"/>
+  <path d="M315 45 L470 85 L430 225 L275 185 Z" fill="#dcfce7" stroke="#15803d" stroke-width="7" stroke-linejoin="round"/>
+  <path d="M520 50 L690 60 L610 130 L665 235 Z" fill="#fef3c7" stroke="#b45309" stroke-width="7" stroke-linejoin="round"/>
+</svg>

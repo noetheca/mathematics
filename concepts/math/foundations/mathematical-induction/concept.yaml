@@ -1,0 +1,8 @@
+schemaVersion: 1
+id: math/foundations/mathematical-induction
+prerequisites:
+  - math/foundations/natural-numbers
+  - math/foundations/proof-and-counterexample
+related:
+  - math/foundations/peano-axioms
+  - math/foundations/natural-number-arithmetic

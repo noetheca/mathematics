@@ -1,0 +1,6 @@
+schemaVersion: 1
+id: math/statistics/picture-and-symbol-graphs
+prerequisites:
+  - math/statistics/frequency-counts
+related:
+  - math/statistics/one-way-tables
